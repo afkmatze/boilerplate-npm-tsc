@@ -4,3 +4,7 @@ dist/
 
 # node modules
 node_modules/
+
+# logs
+npm-debug.log.*
+*.log
