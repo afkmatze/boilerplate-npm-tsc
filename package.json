@@ -1,0 +1,43 @@
+{
+  "name": "boilerplat-npm-tsc",
+  "version": "0.0.0",
+  "description": "typescript boilerplate for npm module",
+  "repository": "git@github.com:afkmatze/boilerplate-npm-tsc.git",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "check": "npm-check --skip-unused",
+    "test": "karma start",
+    "watch:test": "npm run test -- --auto-watch --no-single-run",
+    "lint": "tslint ./src/**/*.ts ./test/**/*.ts",
+    "version": "npm run release",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags",
+    "clean": "npm-run-all -p clean:*",
+    "clean:build": "rimraf build",
+    "clean:dist": "rimraf dist",
+    "clean:release": "rimraf release",
+    "build": "npm run build:ts",
+    "build:release": "cross-env NODE_ENV=production npm run build",
+    "build:package": "cross-env NODE_ENV=package npm run build",
+    "build:ts": "tsc",
+    "copy:build": "cpx 'src/**/*' build",
+    "release": "npm-run-all build:release",
+    "package": "npm-run-all -s clean copy:build package:ts build:package package:replace package:minify clean:build",
+    "package:ts": "tsc --outDir release",
+    "package:replace": "node ./config/replace.js",
+    "package:minify": "uglifyjs release/index.js --source-map release/index.min.js.map --source-map-url release/index.js.map --compress --mangle --screw-ie8 --output release/index.min.js"
+  },
+  "keywords": ["typescript","boilerplate"],
+  "author": "Matthias Buchholz",
+  "license": "ISC",
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "cross-env": "^4.0.0",
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "tslint": "^5.0.0",
+    "typescript": "^2.2.2",
+    "uglifyjs": "^2.4.10"
+  }
+}

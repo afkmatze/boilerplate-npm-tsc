@@ -1,0 +1,3 @@
+interface CBMarker {
+  hello():void
+}
