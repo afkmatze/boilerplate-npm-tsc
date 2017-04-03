@@ -1,8 +1,7 @@
 {
-  "name": "boilerplate-npm-tsc",
+  "name": "cafebrd-marker",
   "version": "0.0.0",
   "description": "typescript boilerplate for npm module",
-  "repository": "git@github.com:afkmatze/boilerplate-npm-tsc.git",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
